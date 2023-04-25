@@ -6,6 +6,7 @@
 // import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import Account from '../components/Account';
+import Poll from '../components/Poll';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
 
+  //Get from Local Storage
   useEffect(() => {
     const storedData = localStorage.getItem('notInc4Account');
     if (storedData) {
@@ -28,12 +30,12 @@ const Home = () => {
     });
   }
 
+  //Check if session exist and account endswith @inc4.net
   const canUserSignIn = () => {
     if (session) {
       if (session?.user.email.endsWith('@inc4.net')) {
         return true;
       } else {
-        // alert('Use your INC4 account, please!');
         localStorage.setItem('notInc4Account', true);
         supabase.auth.signOut();
         return false;
@@ -58,7 +60,10 @@ const Home = () => {
           /> */}
         </>
       ) : (
-        <Account session={session} />
+        <>
+          <Account session={session} />
+          <Poll session={session} />
+        </>
       )}
     </div>
   );
