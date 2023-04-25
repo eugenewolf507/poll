@@ -5,8 +5,6 @@ export default function Account({ session }) {
   const supabase = useSupabaseClient();
   const user = useUser();
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -18,7 +16,7 @@ export default function Account({ session }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website`)
+        .select(`email`)
         .eq('id', user.id)
         .single();
 
@@ -27,8 +25,7 @@ export default function Account({ session }) {
       }
 
       if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
+        console.log(data);
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -38,14 +35,13 @@ export default function Account({ session }) {
     }
   }
 
-  async function updateProfile({ username, website }) {
+  async function updateProfile({ email }) {
     try {
       setLoading(true);
 
       const updates = {
         id: user.id,
-        username,
-        website,
+        email,
         updated_at: new Date().toISOString(),
       };
 
@@ -62,39 +58,24 @@ export default function Account({ session }) {
 
   return (
     <div className="form-widget">
+      {/* Inputs */}
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="url"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
 
+      {/* update button */}
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website })}
+          onClick={() => updateProfile({ email: session.user.email })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
 
+      {/* sign out button */}
       <div>
         <button
           className="button block"
