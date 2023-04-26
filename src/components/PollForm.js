@@ -17,8 +17,12 @@ const PollForm = ({
           {option.label}
         </label>
       ))}
-      <button type="submit" disabled={selectedOption ? false : true}>
-        Submit
+      <button
+        type="submit"
+        disabled={selectedOption ? false : true}
+        className="btn"
+      >
+        Проголосувати
       </button>
     </form>
   );

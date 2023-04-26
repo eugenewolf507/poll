@@ -11,40 +11,29 @@ const Results = ({
   calculateVotedQuantity,
 }) => {
   return (
-    <>
-      <br />
-      <br />
-      <br />
-
-      <div>
-        Option 1: {+option1} voted
-        <ProgressBar percent={(+option1 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 2: {+option2} voted
-        <ProgressBar percent={(+option2 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 3: {+option3} voted
-        <ProgressBar percent={(+option3 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 4: {+option4} voted
-        <ProgressBar percent={(+option4 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 5: {+option5} voted
-        <ProgressBar percent={(+option5 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 6: {+option6} voted
-        <ProgressBar percent={(+option6 * 100) / calculateVotedQuantity()} />
-      </div>
-      <div>
-        Option 7: {+option7} voted
-        <ProgressBar percent={(+option7 * 100) / calculateVotedQuantity()} />
-      </div>
-    </>
+    <div className="results">
+      <div>Варіант 1.</div>
+      <div> {+option1} людей проголосувало</div>
+      <ProgressBar percent={(+option1 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 2.</div>
+      <div> {+option2} людей проголосувало</div>
+      <ProgressBar percent={(+option2 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 3.</div>
+      <div> {+option3} людей проголосувало</div>
+      <ProgressBar percent={(+option3 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 4.</div>
+      <div> {+option4} людей проголосувало</div>
+      <ProgressBar percent={(+option4 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 5.</div>
+      <div> {+option5} людей проголосувало</div>
+      <ProgressBar percent={(+option5 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 6.</div>
+      <div> {+option6} людей проголосувало</div>
+      <ProgressBar percent={(+option6 * 100) / calculateVotedQuantity()} />
+      <div>Варіант 7.</div>
+      <div> {+option7} людей проголосувало</div>
+      <ProgressBar percent={(+option7 * 100) / calculateVotedQuantity()} />
+    </div>
   );
 };
 

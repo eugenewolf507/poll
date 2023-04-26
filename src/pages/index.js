@@ -55,7 +55,7 @@ const Home = () => {
         </>
       ) : (
         <>
-          <button onClick={signInWithGoogle}>
+          <button onClick={signInWithGoogle} className="btn">
             Залогінтесь через корпоративний INC4 (Google) аккаунт
           </button>
           {notInc4Account && (
