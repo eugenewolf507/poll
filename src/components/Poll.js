@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
-import ProgressBar from './ProgressBar';
+import TotallyVoted from './TotalyVoted';
+import PollForm from './PollForm';
+import Results from './Results';
 
 export default function Poll({ session }) {
   const supabase = useSupabaseClient();
   const user = useUser();
-  const numberOfUsers = 46;
+  const numberOfUsers = 49;
   const [loading, setLoading] = useState(true);
+  const [userEmailFromBD, setUserEmailFromBD] = useState(undefined);
   const [selectedOption, setSelectedOption] = useState(undefined);
+  const [doesUserVoted, setDoesUserVoted] = useState(
+    userEmailFromBD === session.user.email
+  );
   const [option1, setOption1] = useState(0);
   const [option2, setOption2] = useState(0);
   const [option3, setOption3] = useState(0);
@@ -27,8 +33,9 @@ export default function Poll({ session }) {
     { value: '7', label: 'Варіант 7' },
   ];
 
-  // get data start
+  // get data useEffect
   useEffect(() => {
+    getProfile();
     getPoll();
   }, [session]);
 
@@ -39,7 +46,7 @@ export default function Poll({ session }) {
       let { data, error, status } = await supabase
         .from('results')
         .select(`option1, option2, option3, option4, option5, option6, option7`)
-        .eq('id', user.id)
+        .eq('id', 'poll1')
         .single();
 
       if (error && status !== 406) {
@@ -62,7 +69,87 @@ export default function Poll({ session }) {
       setLoading(false);
     }
   }
-  //get data end
+
+  async function getProfile() {
+    try {
+      setLoading(true);
+
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select(`email`)
+        .eq('id', user.id)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setUserEmailFromBD(data.email);
+        console.log('data');
+        console.log(data);
+      }
+    } catch (error) {
+      alert('Error loading user data!');
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updatePoll({
+    option1,
+    option2,
+    option3,
+    option4,
+    option5,
+    option6,
+    option7,
+  }) {
+    try {
+      setLoading(true);
+
+      const updates = {
+        id: 'poll1',
+        updated_at: new Date().toISOString(),
+        option1,
+        option2,
+        option3,
+        option4,
+        option5,
+        option6,
+        option7,
+      };
+
+      let { error } = await supabase.from('results').upsert(updates);
+      if (error) throw error;
+      alert(`Profile updated with `);
+    } catch (error) {
+      alert('Error updating the data!');
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updateProfile({ email }) {
+    try {
+      setLoading(true);
+      const updates = {
+        id: user.id,
+        email,
+        updated_at: new Date().toISOString(),
+      };
+      let { error } = await supabase.from('profiles').upsert(updates);
+      if (error) throw error;
+      alert('Profile updated!');
+    } catch (error) {
+      alert('Error updating the data!');
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -78,6 +165,7 @@ export default function Poll({ session }) {
       tempO7 = option7;
     event.preventDefault();
     console.log('Selected option: ', selectedOption);
+    setDoesUserVoted(true);
     switch (selectedOption) {
       case '1':
         tempO1++;
@@ -117,107 +205,42 @@ export default function Poll({ session }) {
       option6: tempO6,
       option7: tempO7,
     });
+    const email = session.user.email;
+    updateProfile({ email });
   };
-  //form logic END
-
-  //set data START
-  async function updatePoll({
-    option1,
-    option2,
-    option3,
-    option4,
-    option5,
-    option6,
-    option7,
-  }) {
-    try {
-      setLoading(true);
-
-      const updates = {
-        id: user.id,
-        updated_at: new Date().toISOString(),
-        option1,
-        option2,
-        option3,
-        option4,
-        option5,
-        option6,
-        option7,
-      };
-
-      let { error } = await supabase.from('results').upsert(updates);
-      if (error) throw error;
-      alert(`Profile updated with `);
-    } catch (error) {
-      alert('Error updating the data!');
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-  //set data END
 
   //utils
-  const getVotedQuantity = () =>
+  const calculateVotedQuantity = () =>
     option1 + option2 + option3 + option4 + option5 + option6 + option7;
-  const getVotedPercentage = () => (getVotedQuantity() * 100) / numberOfUsers;
+  const calculateVotedPercentage = () =>
+    (calculateVotedQuantity() * 100) / numberOfUsers;
+  // const doesUserVoted = () => userEmailFromBD === session.user.email;
+  // console.log('doesUserVoted', doesUserVoted);
+
   return (
     <div className="form-widget">
-      <form onSubmit={handleSubmit}>
-        {options.map((option) => (
-          <label key={option.value} className="radio">
-            <input
-              type="radio"
-              value={option.value}
-              checked={selectedOption === option.value}
-              onChange={handleOptionChange}
-            />
-            {option.label}
-          </label>
-        ))}
-        <button type="submit" disabled={selectedOption ? false : true}>
-          Submit
-        </button>
-      </form>
-      <p>
-        {getVotedQuantity()} voted from {numberOfUsers}
-      </p>
-      <p>Percent of voted: {getVotedPercentage()}</p>
-      <div>
-        <ProgressBar percent={getVotedPercentage()} />
-      </div>
-      <br />
-      <br />
-      <br />
-
-      <div>
-        Option 1: {+option1} voted
-        <ProgressBar percent={(+option1 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 2: {+option2} voted
-        <ProgressBar percent={(+option2 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 3: {+option3} voted
-        <ProgressBar percent={(+option3 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 4: {+option4} voted
-        <ProgressBar percent={(+option4 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 5: {+option5} voted
-        <ProgressBar percent={(+option5 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 6: {+option6} voted
-        <ProgressBar percent={(+option6 * 100) / getVotedQuantity()} />
-      </div>
-      <div>
-        Option 7: {+option7} voted
-        <ProgressBar percent={(+option7 * 100) / getVotedQuantity()} />
-      </div>
+      <div> {doesUserVoted ? 'User voted' : "User doesn't voted"}</div>
+      <PollForm
+        options={options}
+        selectedOption={selectedOption}
+        handleSubmit={handleSubmit}
+        handleOptionChange={handleOptionChange}
+      />
+      <TotallyVoted
+        numberOfUsers={numberOfUsers}
+        calculateVotedQuantity={calculateVotedQuantity}
+        calculateVotedPercentage={calculateVotedPercentage}
+      />
+      <Results
+        option1={option1}
+        option2={option2}
+        option3={option3}
+        option4={option4}
+        option5={option5}
+        option6={option6}
+        option7={option7}
+        calculateVotedQuantity={calculateVotedQuantity}
+      />
 
       {/* update button */}
       {/* <div>

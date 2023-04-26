@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## TEMP DELETE
+
+SQL and
+Enable all actions for users based on email
+((auth.jwt() ->> 'email'::text) ~~\* '%@inc4.net'::text)
+
 ## Getting Started
 
 First, run the development server:

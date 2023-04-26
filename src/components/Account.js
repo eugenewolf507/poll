@@ -25,7 +25,7 @@ export default function Account({ session }) {
       }
 
       if (data) {
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -38,13 +38,11 @@ export default function Account({ session }) {
   async function updateProfile({ email }) {
     try {
       setLoading(true);
-
       const updates = {
         id: user.id,
         email,
         updated_at: new Date().toISOString(),
       };
-
       let { error } = await supabase.from('profiles').upsert(updates);
       if (error) throw error;
       alert('Profile updated!');
