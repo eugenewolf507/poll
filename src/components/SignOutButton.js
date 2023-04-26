@@ -1,6 +1,6 @@
 const SignOutButton = ({ supabase }) => {
   return (
-    <button className="button block" onClick={() => supabase.auth.signOut()}>
+    <button className="btn" onClick={() => supabase.auth.signOut()}>
       Вийти
     </button>
   );

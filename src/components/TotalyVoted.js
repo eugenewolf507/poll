@@ -7,9 +7,9 @@ const TotallyVoted = ({
 }) => (
   <>
     <p>
+      Всього проголосувало: {calculateVotedPercentage()}% або{' '}
       {calculateVotedQuantity()} голос(ів) з {numberOfUsers} людей.
     </p>
-    <p>Відсоток людей, що проголосували: {calculateVotedPercentage()}</p>
     <div>
       <ProgressBar percent={calculateVotedPercentage()} />
     </div>

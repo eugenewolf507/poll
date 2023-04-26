@@ -208,18 +208,18 @@ export default function Poll({ session }) {
   const calculateVotedQuantity = () =>
     option1 + option2 + option3 + option4 + option5 + option6 + option7;
   const calculateVotedPercentage = () =>
-    (calculateVotedQuantity() * 100) / numberOfUsers;
+    Math.round((calculateVotedQuantity() * 100) / numberOfUsers);
 
   return (
     <div className="form-widget">
       <div>
         {' '}
         {doesUserVoted
-          ? 'Дякую, Ви вже проголосували :)'
+          ? 'Дякую, Ви вже проголосували. Ось результати:'
           : 'Проголосуйте, будь ласка!'}
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div>Завантаження...</div>
       ) : (
         <>
           <TotallyVoted
