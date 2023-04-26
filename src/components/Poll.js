@@ -9,11 +9,8 @@ export default function Poll({ session }) {
   const user = useUser();
   const numberOfUsers = 49;
   const [loading, setLoading] = useState(true);
-  const [userEmailFromBD, setUserEmailFromBD] = useState(undefined);
   const [selectedOption, setSelectedOption] = useState(undefined);
-  const [doesUserVoted, setDoesUserVoted] = useState(
-    userEmailFromBD === session.user.email
-  );
+  const [doesUserVoted, setDoesUserVoted] = useState(false);
   const [option1, setOption1] = useState(0);
   const [option2, setOption2] = useState(0);
   const [option3, setOption3] = useState(0);
@@ -85,9 +82,9 @@ export default function Poll({ session }) {
       }
 
       if (data) {
-        setUserEmailFromBD(data.email);
-        console.log('data');
-        console.log(data);
+        if (data.email === session.user.email) {
+          setDoesUserVoted(true);
+        }
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -123,7 +120,6 @@ export default function Poll({ session }) {
 
       let { error } = await supabase.from('results').upsert(updates);
       if (error) throw error;
-      alert(`Profile updated with `);
     } catch (error) {
       alert('Error updating the data!');
       console.log(error);
@@ -142,7 +138,6 @@ export default function Poll({ session }) {
       };
       let { error } = await supabase.from('profiles').upsert(updates);
       if (error) throw error;
-      alert('Profile updated!');
     } catch (error) {
       alert('Error updating the data!');
       console.log(error);
@@ -165,7 +160,6 @@ export default function Poll({ session }) {
       tempO7 = option7;
     event.preventDefault();
     console.log('Selected option: ', selectedOption);
-    setDoesUserVoted(true);
     switch (selectedOption) {
       case '1':
         tempO1++;
@@ -205,6 +199,7 @@ export default function Poll({ session }) {
       option6: tempO6,
       option7: tempO7,
     });
+    setDoesUserVoted(true);
     const email = session.user.email;
     updateProfile({ email });
   };
@@ -214,33 +209,45 @@ export default function Poll({ session }) {
     option1 + option2 + option3 + option4 + option5 + option6 + option7;
   const calculateVotedPercentage = () =>
     (calculateVotedQuantity() * 100) / numberOfUsers;
-  // const doesUserVoted = () => userEmailFromBD === session.user.email;
-  // console.log('doesUserVoted', doesUserVoted);
 
   return (
     <div className="form-widget">
-      <div> {doesUserVoted ? 'User voted' : "User doesn't voted"}</div>
-      <PollForm
-        options={options}
-        selectedOption={selectedOption}
-        handleSubmit={handleSubmit}
-        handleOptionChange={handleOptionChange}
-      />
-      <TotallyVoted
-        numberOfUsers={numberOfUsers}
-        calculateVotedQuantity={calculateVotedQuantity}
-        calculateVotedPercentage={calculateVotedPercentage}
-      />
-      <Results
-        option1={option1}
-        option2={option2}
-        option3={option3}
-        option4={option4}
-        option5={option5}
-        option6={option6}
-        option7={option7}
-        calculateVotedQuantity={calculateVotedQuantity}
-      />
+      <div>
+        {' '}
+        {doesUserVoted
+          ? 'Дякую, Ви вже проголосували :)'
+          : 'Проголосуйте, будь ласка!'}
+      </div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <TotallyVoted
+            numberOfUsers={numberOfUsers}
+            calculateVotedQuantity={calculateVotedQuantity}
+            calculateVotedPercentage={calculateVotedPercentage}
+          />
+          {doesUserVoted ? (
+            <Results
+              option1={option1}
+              option2={option2}
+              option3={option3}
+              option4={option4}
+              option5={option5}
+              option6={option6}
+              option7={option7}
+              calculateVotedQuantity={calculateVotedQuantity}
+            />
+          ) : (
+            <PollForm
+              options={options}
+              selectedOption={selectedOption}
+              handleSubmit={handleSubmit}
+              handleOptionChange={handleOptionChange}
+            />
+          )}
+        </>
+      )}
 
       {/* update button */}
       {/* <div>
