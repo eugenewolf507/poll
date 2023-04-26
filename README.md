@@ -1,10 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## TEMP DELETE
+## TODO
 
-SQL and
-Enable all actions for users based on email
-((auth.jwt() ->> 'email'::text) ~~\* '%@inc4.net'::text)
+- [] Combine getPoll and getProfile in one request
+- [] Combine updatePoll and updateProfile in one request
+- [] Switch option values to array
 
 ## Getting Started
 
