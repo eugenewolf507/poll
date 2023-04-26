@@ -1,16 +1,14 @@
-// import Image from 'next/image';
 // import { Inter } from 'next/font/google';
 // const inter = Inter({ subsets: ['latin'] });
 //! Login with auth-helpers
-// import { Auth } from '@supabase/auth-ui-react';
-// import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
-import Account from '../components/Account';
+// import Account from '../components/Account';
 import Poll from '../components/Poll';
+import SignOutButton from '../components/SignOutButton';
+import UserEmail from '../components/UserEmail';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
-  // const notInc4Account = localStorage.getItem('notInc4Account');
   const [notInc4Account, setNotInc4Account] = useState(false);
   const session = useSession();
   const supabase = useSupabaseClient();
@@ -52,16 +50,12 @@ const Home = () => {
             SignIn with you INC4 Google account
           </button>
           {notInc4Account && <p>NOT INC4 ACCOUNT</p>}
-          {/* <Auth
-            providers={['google']}
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            theme="dark"
-          /> */}
         </>
       ) : (
         <>
-          <Account session={session} />
+          {/* <Account session={session} /> */}
+          <UserEmail session={session} />
+          <SignOutButton supabase={supabase} />
           <Poll session={session} />
         </>
       )}
