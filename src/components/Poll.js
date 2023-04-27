@@ -211,13 +211,12 @@ export default function Poll({ session }) {
     Math.round((calculateVotedQuantity() * 100) / numberOfUsers);
 
   return (
-    <div className="form-widget">
-      <div>
-        {' '}
+    <div className="poll-wrapper">
+      <p className="sub-title">
         {doesUserVoted
-          ? 'Дякую, Ви вже проголосували. Ось результати:'
+          ? 'Дякуємо, Ви вже проголосували. Ось результати:'
           : 'Проголосуйте, будь ласка!'}
-      </div>
+      </p>
       {loading ? (
         <div>Завантаження...</div>
       ) : (
