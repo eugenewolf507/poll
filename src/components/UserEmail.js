@@ -1,5 +1,5 @@
 const UserEmail = ({ session }) => {
-  return <div>Ваш email: {session.user.email}</div>;
+  return <div className="user-email">Ваш email: {session.user.email}</div>;
 };
 
 export default UserEmail;

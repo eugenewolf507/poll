@@ -5,16 +5,16 @@ const PollForm = ({
   handleOptionChange,
 }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="poll-form">
       {options.map((option) => (
-        <label key={option.value} className="radio">
+        <label key={option.value}>
           <input
             type="radio"
             value={option.value}
             checked={selectedOption === option.value}
             onChange={handleOptionChange}
           />
-          {option.label}
+          <span className="radio__label">{option.label}</span>
         </label>
       ))}
       <button

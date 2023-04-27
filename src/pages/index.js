@@ -2,10 +2,11 @@
 // const inter = Inter({ subsets: ['latin'] });
 //! Login with auth-helpers
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Poll from '../components/Poll';
 import SignOutButton from '../components/SignOutButton';
 import UserEmail from '../components/UserEmail';
-import { useState, useEffect } from 'react';
 
 const Home = () => {
   const [notInc4Account, setNotInc4Account] = useState(false);
@@ -46,23 +47,43 @@ const Home = () => {
   // };
 
   return (
-    <div className="container">
+    <div>
       {canUserSignIn() ? (
         <>
-          <UserEmail session={session} />
-          <SignOutButton supabase={supabase} />
+          <div className="header">
+            <Image
+              src="/logo.svg"
+              alt="INC4 Logo"
+              width={70}
+              height={41}
+              priority
+            />
+            <UserEmail session={session} />
+            <SignOutButton supabase={supabase} />
+          </div>
           <Poll session={session} />
         </>
       ) : (
         <>
-          <button onClick={signInWithGoogle} className="btn">
-            Залогінтесь через корпоративний INC4 (Google) аккаунт
-          </button>
-          {notInc4Account && (
-            <p>
-              Ви намагаєтесь залогінитись не через корпоративний INC4 аккаунт
-            </p>
-          )}
+          <div className="header">
+            <Image
+              src="/logo.svg"
+              alt="INC4 Logo"
+              width={70}
+              height={41}
+              priority
+            />
+          </div>
+          <div className="loginBtn-wrapper">
+            <button onClick={signInWithGoogle} className="btn">
+              Залогінтесь через корпоративний INC4 (Google) аккаунт
+            </button>
+            {notInc4Account && (
+              <p>
+                Ви намагаєтесь залогінитись не через корпоративний INC4 аккаунт.
+              </p>
+            )}
+          </div>
         </>
       )}
     </div>
