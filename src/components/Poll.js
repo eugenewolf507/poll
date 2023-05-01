@@ -3,6 +3,7 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import TotallyVoted from './TotalyVoted';
 import PollForm from './PollForm';
 import Results from './Results';
+import financialHelpData from '../data/financialHelpData';
 
 export default function Poll({ session }) {
   const supabase = useSupabaseClient();
@@ -18,6 +19,8 @@ export default function Poll({ session }) {
   const [option5, setOption5] = useState(0);
   const [option6, setOption6] = useState(0);
   const [option7, setOption7] = useState(0);
+
+  console.log(financialHelpData);
 
   //form logic START
   const options = [
