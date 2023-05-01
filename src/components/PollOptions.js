@@ -1,7 +1,7 @@
 import financialHelpData from '../data/financialHelpData';
 import OptionCard from './OptionCard';
 
-const PollOptions = () => {
+const PollOptions = ({ handleChooseOption }) => {
   console.log(financialHelpData);
   return (
     <div>
@@ -12,6 +12,7 @@ const PollOptions = () => {
           author={author}
           recipient={recipient}
           about={about}
+          handleChooseOption={handleChooseOption}
         />
       ))}
     </div>
