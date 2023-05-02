@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import TotallyVoted from './TotalyVoted';
-import PollForm from './PollForm';
 import PollOptions from './PollOptions';
 import Results from './Results';
 
@@ -292,15 +291,7 @@ export default function Poll({ session }) {
               calculateVotedQuantity={calculateVotedQuantity}
             />
           ) : (
-            <>
-              <PollOptions handleChooseOption={handleChooseOption} />
-              <PollForm
-                options={options}
-                selectedOption={selectedOption}
-                handleSubmit={handleSubmit}
-                handleOptionChange={handleOptionChange}
-              />
-            </>
+            <PollOptions handleChooseOption={handleChooseOption} />
           )}
         </>
       )}
