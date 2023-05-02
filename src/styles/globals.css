@@ -159,13 +159,6 @@ body {
   transition: width 0.3s ease-in-out;
 }
 
-.poll-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding-top: 20px;
-}
-
 .radio__label {
   padding-left: 5px;
 }
