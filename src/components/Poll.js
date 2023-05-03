@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import TotallyVoted from './TotalyVoted';
-import PollForm from './PollForm';
+import PollOptions from './PollOptions';
 import Results from './Results';
 
 export default function Poll({ session }) {
@@ -204,6 +204,59 @@ export default function Poll({ session }) {
     updateProfile({ email });
   };
 
+  const handleChooseOption = (id) => {
+    console.log(`handleChooseOption clicked id - ${id}`);
+    let tempO1 = option1,
+      tempO2 = option2,
+      tempO3 = option3,
+      tempO4 = option4,
+      tempO5 = option5,
+      tempO6 = option6,
+      tempO7 = option7;
+    switch (id) {
+      case '1':
+        tempO1++;
+        setOption1(tempO1);
+        break;
+      case '2':
+        tempO2++;
+        setOption2(tempO2);
+        break;
+      case '3':
+        tempO3++;
+        setOption3(tempO3);
+        break;
+      case '4':
+        tempO4++;
+        setOption4(tempO4);
+        break;
+      case '5':
+        tempO5++;
+        setOption5(tempO5);
+        break;
+      case '6':
+        tempO6++;
+        setOption6(tempO6);
+        break;
+      case '7':
+        tempO7++;
+        setOption7(tempO7);
+        break;
+    }
+    updatePoll({
+      option1: tempO1,
+      option2: tempO2,
+      option3: tempO3,
+      option4: tempO4,
+      option5: tempO5,
+      option6: tempO6,
+      option7: tempO7,
+    });
+    setDoesUserVoted(true);
+    const email = session.user.email;
+    updateProfile({ email });
+  };
+
   //utils
   const calculateVotedQuantity = () =>
     option1 + option2 + option3 + option4 + option5 + option6 + option7;
@@ -238,12 +291,7 @@ export default function Poll({ session }) {
               calculateVotedQuantity={calculateVotedQuantity}
             />
           ) : (
-            <PollForm
-              options={options}
-              selectedOption={selectedOption}
-              handleSubmit={handleSubmit}
-              handleOptionChange={handleOptionChange}
-            />
+            <PollOptions handleChooseOption={handleChooseOption} />
           )}
         </>
       )}

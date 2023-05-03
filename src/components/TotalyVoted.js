@@ -5,7 +5,7 @@ const TotallyVoted = ({
   calculateVotedQuantity,
   calculateVotedPercentage,
 }) => (
-  <>
+  <div className="totally-voted">
     <p>
       Всього проголосувало: {calculateVotedPercentage()}% або{' '}
       {calculateVotedQuantity()} голос(ів) з {numberOfUsers} людей.
@@ -13,7 +13,7 @@ const TotallyVoted = ({
     <div>
       <ProgressBar percent={calculateVotedPercentage()} />
     </div>
-  </>
+  </div>
 );
 
 export default TotallyVoted;
