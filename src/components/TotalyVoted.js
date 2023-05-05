@@ -6,7 +6,7 @@ const TotallyVoted = ({
   calculateVotedPercentage,
 }) => (
   <div className="totally-voted">
-    <p>
+    <p className="totally-voted__title">
       Всього проголосувало: {calculateVotedPercentage()}% або{' '}
       {calculateVotedQuantity()} голос(ів) з {numberOfUsers} людей.
     </p>
