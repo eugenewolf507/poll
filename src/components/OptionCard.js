@@ -23,16 +23,22 @@ const OptionCard = ({
       </p>
     </div>
     <div className="card__main">
-      <iframe
-        // width="430"
-        // height="250"
-        src={`https://www.youtube.com/embed/${youtubeID}`}
-      ></iframe>
+      <div className="video__wrapper">
+        <div className="iframe__wrapper">
+          <iframe
+            // width="180"
+            // height="130"
+            src={`https://www.youtube.com/embed/${youtubeID}`}
+            className="iframe__responsive"
+          ></iframe>
+        </div>
+      </div>
       <p className="card__about">{about}</p>
     </div>
     <button onClick={() => handleChooseOption(id)} className="btn">
       Віддати голос
     </button>
+    <div className="divideLine"></div>
   </div>
 );
 
