@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import SimpleSlider from './Slider';
 
 const OptionCard = ({
   id,
@@ -24,14 +25,34 @@ const OptionCard = ({
     </div>
     <div className="card__main">
       <div className="video__wrapper">
-        <div className="iframe__wrapper">
-          <iframe
-            // width="180"
-            // height="130"
-            src={`https://www.youtube.com/embed/${youtubeID}`}
-            className="iframe__responsive"
-          ></iframe>
-        </div>
+        <SimpleSlider>
+          <div className="iframe__wrapper">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeID}`}
+              allowfullscreen="allowfullscreen"
+              mozallowfullscreen="mozallowfullscreen"
+              msallowfullscreen="msallowfullscreen"
+              oallowfullscreen="oallowfullscreen"
+              webkitallowfullscreen="webkitallowfullscreen"
+              className="iframe__responsive"
+            ></iframe>
+          </div>
+          <div>
+            <h3>2</h3>
+          </div>
+          <div>
+            <h3>3</h3>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+          <div>
+            <h3>5</h3>
+          </div>
+          <div>
+            <h3>6</h3>
+          </div>
+        </SimpleSlider>
       </div>
       <p className="card__about">{about}</p>
     </div>
