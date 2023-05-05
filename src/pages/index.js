@@ -25,6 +25,11 @@ const Home = () => {
     localStorage.setItem('notInc4Account', false);
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        queryParams: {
+          prompt: 'select_account',
+        },
+      },
     });
   }
 
