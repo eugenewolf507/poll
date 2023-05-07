@@ -52,21 +52,6 @@ body {
   padding: 0 40px 40px;
 }
 
-.user-email {
-  color: #cbcbcb;
-  padding: 0 5px;
-  font-size: 18px;
-}
-
-@media screen and (max-width: 600px) {
-  .user-email {
-    font-size: 16px;
-    order: 2;
-    width: 100%;
-    text-align: center;
-  }
-}
-
 .btn {
   display: inline-flex;
   height: 54px;
