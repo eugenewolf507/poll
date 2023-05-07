@@ -52,27 +52,6 @@ body {
   padding: 0 40px 40px;
 }
 
-/* @media screen and (min-width: 600px) {
-  .poll-wrapper {
-    padding: 20px;
-  }
-} */
-
-.user-email {
-  color: #cbcbcb;
-  padding: 0 5px;
-  font-size: 18px;
-}
-
-@media screen and (max-width: 600px) {
-  .user-email {
-    font-size: 16px;
-    order: 2;
-    width: 100%;
-    text-align: center;
-  }
-}
-
 .btn {
   display: inline-flex;
   height: 54px;
@@ -222,10 +201,6 @@ body {
 }
 
 @media screen and (min-width: 600px) {
-  /* .card__title {
-    font-size: 25px;
-  } */
-
   .card__main {
     display: flex;
   }
@@ -254,7 +229,8 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 56.25%; /*16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  padding-top: 56.25%;
+  /*16:9 Aspect Ratio (divide 9 by 16 = 0.5625)*/
 }
 
 /* Then style the iframe to fit in the container div with full height and width */
@@ -266,4 +242,18 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
+  border: 0;
+}
+
+.slider__vertical-center {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+}
+
+.slider__image {
+  width: 100%;
+  height: auto;
 }

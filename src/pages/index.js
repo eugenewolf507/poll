@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Poll from '../components/Poll';
 import SignOutButton from '../components/SignOutButton';
-import UserEmail from '../components/UserEmail';
 
 const Home = () => {
   const [notInc4Account, setNotInc4Account] = useState(false);
@@ -63,7 +62,6 @@ const Home = () => {
               height={41}
               priority
             />
-            <UserEmail session={session} />
             <SignOutButton supabase={supabase} />
           </div>
           <Poll session={session} />
