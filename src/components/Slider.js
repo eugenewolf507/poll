@@ -8,7 +8,11 @@ function SampleNextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: 'block', background: 'red', color: 'black' }}
+      style={{
+        ...style,
+        display: 'block',
+        right: '10px',
+      }}
       onClick={onClick}
     />
   );
@@ -19,7 +23,12 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: 'block', background: 'green' }}
+      style={{
+        ...style,
+        display: 'block',
+        left: '10px',
+        zIndex: 20,
+      }}
       onClick={onClick}
     />
   );
@@ -28,7 +37,7 @@ function SamplePrevArrow(props) {
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -38,27 +47,7 @@ export default class SimpleSlider extends Component {
     };
     return (
       <div>
-        <Slider {...settings}>
-          {this.props.children}
-          {/* <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div> */}
-        </Slider>
+        <Slider {...settings}>{this.props.children}</Slider>
       </div>
     );
   }
