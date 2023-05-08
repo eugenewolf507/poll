@@ -39,38 +39,38 @@ const OptionCard = ({
         </p>
       </div>
       <div className="card__main">
-        <div className="video__wrapper">
-          <SimpleSlider>
-            <div>
-              <div className="slider__vertical-center">
-                <div className="iframe__wrapper">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${youtubeID}`}
-                    allowfullscreen="allowfullscreen"
-                    mozallowfullscreen="mozallowfullscreen"
-                    msallowfullscreen="msallowfullscreen"
-                    oallowfullscreen="oallowfullscreen"
-                    webkitallowfullscreen="webkitallowfullscreen"
-                    className="iframe__responsive"
-                  ></iframe>
-                </div>
+        {/* <div className="video__wrapper"> */}
+        <SimpleSlider>
+          <div>
+            <div className="slider__vertical-center">
+              <div className="iframe__wrapper">
+                <iframe
+                  src={`https://www.youtube.com/embed/${youtubeID}`}
+                  allowfullscreen="allowfullscreen"
+                  mozallowfullscreen="mozallowfullscreen"
+                  msallowfullscreen="msallowfullscreen"
+                  oallowfullscreen="oallowfullscreen"
+                  webkitallowfullscreen="webkitallowfullscreen"
+                  className="iframe__responsive"
+                ></iframe>
               </div>
             </div>
-            {images.map((image, index) => (
-              <div key={index}>
-                <div className="slider__vertical-center">
-                  <Image
-                    src={image}
-                    alt="Picture of the author"
-                    className="slider__image"
-                    // width={437}
-                    // height={437}
-                  />
-                </div>
+          </div>
+          {images.map((image, index) => (
+            <div key={index}>
+              <div className="slider__vertical-center">
+                <Image
+                  src={image}
+                  alt="Picture of the author"
+                  className="slider__image"
+                  // width={437}
+                  // height={437}
+                />
               </div>
-            ))}
-          </SimpleSlider>
-        </div>
+            </div>
+          ))}
+        </SimpleSlider>
+        {/* </div> */}
         <p className="card__about">{about}</p>
       </div>
       <button onClick={() => handleChooseOption(id)} className="btn">
