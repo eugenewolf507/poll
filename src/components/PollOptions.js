@@ -2,9 +2,8 @@ import financialHelpData from '../data/financialHelpData';
 import OptionCard from './OptionCard';
 
 const PollOptions = ({ handleChooseOption }) => {
-  console.log(financialHelpData);
   return (
-    <div>
+    <div className="poll__options">
       {financialHelpData.map(
         ({ id, author, recipient, about, userPhoto, youtubeID }) => (
           <OptionCard

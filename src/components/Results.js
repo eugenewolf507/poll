@@ -18,7 +18,7 @@ const Results = ({
         totalVoted={calculateVotedQuantity()}
       />
       <ResultsOption
-        text="Іван Скрипачов для Білик Олександра"
+        text="Вікторія Соколова для 73 Морського Центру Сил спеціальних операцій"
         value={option2}
         totalVoted={calculateVotedQuantity()}
       />
@@ -28,7 +28,7 @@ const Results = ({
         totalVoted={calculateVotedQuantity()}
       />
       <ResultsOption
-        text="Вікторія Соколова для 73 Морського Центру Сил спеціальних операцій"
+        text="Ігор Кішко для БФ «СОЛОМ’ЯНСЬКІ КОТИКИ»"
         value={option4}
         totalVoted={calculateVotedQuantity()}
       />
@@ -38,13 +38,8 @@ const Results = ({
         totalVoted={calculateVotedQuantity()}
       />
       <ResultsOption
-        text="Ігор Кішко для БФ «СОЛОМ’ЯНСЬКІ КОТИКИ»"
-        value={option6}
-        totalVoted={calculateVotedQuantity()}
-      />
-      <ResultsOption
         text="Юлія Стаднік для Баланської Оксани"
-        value={option7}
+        value={option6}
         totalVoted={calculateVotedQuantity()}
       />
     </div>
