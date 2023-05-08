@@ -13,16 +13,17 @@ const OptionCard = ({
   const imgContext = require.context(
     '../../public/BGPhotos',
     true,
-    /\.(png|jpe?g|svg)$/
+    /\.(png|jpe?g|svg|PNG|JPE?G|SVG)$/
   );
   const imageFilenames = imgContext
     .keys()
     .filter((x) => x.includes(`public/BGPhotos/${userPhoto}`));
   const images = imageFilenames.map(imgContext);
 
-  // console.log('imgContext', imgContext);
-  // console.log('imageFilenames', imageFilenames);
-  // console.log('images', images);
+  console.log('userPhoto ', userPhoto);
+  // console.log('imgContext ', imgContext);
+  console.log('imageFilenames ', imageFilenames);
+  // console.log('images ', images);
 
   return (
     <div className="card">
