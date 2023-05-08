@@ -27,7 +27,6 @@ const OptionCard = ({
 
   return (
     <div className="card">
-      <div className="divideLine"></div>
       <div className="card__header">
         <Image
           src={`/usersPhoto/${userPhoto}.jpeg`}
