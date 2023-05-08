@@ -20,9 +20,9 @@ const OptionCard = ({
     .filter((x) => x.includes(`public/BGPhotos/${userPhoto}`));
   const images = imageFilenames.map(imgContext);
 
-  console.log('userPhoto ', userPhoto);
+  // console.log('userPhoto ', userPhoto);
   // console.log('imgContext ', imgContext);
-  console.log('imageFilenames ', imageFilenames);
+  // console.log('imageFilenames ', imageFilenames);
   // console.log('images ', images);
 
   return (
