@@ -27,6 +27,7 @@ const OptionCard = ({
 
   return (
     <div className="card">
+      <div className="divideLine"></div>
       <div className="card__header">
         <Image
           src={`/usersPhoto/${userPhoto}.jpeg`}
@@ -77,7 +78,6 @@ const OptionCard = ({
       <button onClick={() => handleChooseOption(id)} className="btn">
         Віддати голос
       </button>
-      <div className="divideLine"></div>
     </div>
   );
 };
