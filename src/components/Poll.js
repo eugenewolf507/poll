@@ -9,7 +9,6 @@ export default function Poll({ session }) {
   const user = useUser();
   const numberOfUsers = 49;
   const [loading, setLoading] = useState(true);
-  const [selectedOption, setSelectedOption] = useState(undefined);
   const [doesUserVoted, setDoesUserVoted] = useState(false);
   const [option1, setOption1] = useState(0);
   const [option2, setOption2] = useState(0);
@@ -17,18 +16,6 @@ export default function Poll({ session }) {
   const [option4, setOption4] = useState(0);
   const [option5, setOption5] = useState(0);
   const [option6, setOption6] = useState(0);
-  const [option7, setOption7] = useState(0);
-
-  //form logic START
-  const options = [
-    { value: '1', label: 'Варіант 1' },
-    { value: '2', label: 'Варіант 2' },
-    { value: '3', label: 'Варіант 3' },
-    { value: '4', label: 'Варіант 4' },
-    { value: '5', label: 'Варіант 5' },
-    { value: '6', label: 'Варіант 6' },
-    { value: '7', label: 'Варіант 7' },
-  ];
 
   // get data useEffect
   useEffect(() => {
@@ -42,7 +29,7 @@ export default function Poll({ session }) {
 
       let { data, error, status } = await supabase
         .from('results')
-        .select(`option1, option2, option3, option4, option5, option6, option7`)
+        .select(`option1, option2, option3, option4, option5, option6`)
         .eq('id', 'poll1')
         .single();
 
@@ -57,7 +44,6 @@ export default function Poll({ session }) {
         setOption4(data.option4);
         setOption5(data.option5);
         setOption6(data.option6);
-        setOption7(data.option7);
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -101,7 +87,6 @@ export default function Poll({ session }) {
     option4,
     option5,
     option6,
-    option7,
   }) {
     try {
       setLoading(true);
@@ -115,7 +100,6 @@ export default function Poll({ session }) {
         option4,
         option5,
         option6,
-        option7,
       };
 
       let { error } = await supabase.from('results').upsert(updates);
@@ -146,64 +130,6 @@ export default function Poll({ session }) {
     }
   }
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    let tempO1 = option1,
-      tempO2 = option2,
-      tempO3 = option3,
-      tempO4 = option4,
-      tempO5 = option5,
-      tempO6 = option6,
-      tempO7 = option7;
-    event.preventDefault();
-    console.log('Selected option: ', selectedOption);
-    switch (selectedOption) {
-      case '1':
-        tempO1++;
-        setOption1(tempO1);
-        break;
-      case '2':
-        tempO2++;
-        setOption2(tempO2);
-        break;
-      case '3':
-        tempO3++;
-        setOption3(tempO3);
-        break;
-      case '4':
-        tempO4++;
-        setOption4(tempO4);
-        break;
-      case '5':
-        tempO5++;
-        setOption5(tempO5);
-        break;
-      case '6':
-        tempO6++;
-        setOption6(tempO6);
-        break;
-      case '7':
-        tempO7++;
-        setOption7(tempO7);
-        break;
-    }
-    updatePoll({
-      option1: tempO1,
-      option2: tempO2,
-      option3: tempO3,
-      option4: tempO4,
-      option5: tempO5,
-      option6: tempO6,
-      option7: tempO7,
-    });
-    setDoesUserVoted(true);
-    const email = session.user.email;
-    updateProfile({ email });
-  };
-
   const handleChooseOption = (id) => {
     console.log(`handleChooseOption clicked id - ${id}`);
     let tempO1 = option1,
@@ -211,8 +137,7 @@ export default function Poll({ session }) {
       tempO3 = option3,
       tempO4 = option4,
       tempO5 = option5,
-      tempO6 = option6,
-      tempO7 = option7;
+      tempO6 = option6;
     switch (id) {
       case '1':
         tempO1++;
@@ -238,10 +163,6 @@ export default function Poll({ session }) {
         tempO6++;
         setOption6(tempO6);
         break;
-      case '7':
-        tempO7++;
-        setOption7(tempO7);
-        break;
     }
     updatePoll({
       option1: tempO1,
@@ -250,7 +171,6 @@ export default function Poll({ session }) {
       option4: tempO4,
       option5: tempO5,
       option6: tempO6,
-      option7: tempO7,
     });
     setDoesUserVoted(true);
     const email = session.user.email;
@@ -259,7 +179,7 @@ export default function Poll({ session }) {
 
   //utils
   const calculateVotedQuantity = () =>
-    option1 + option2 + option3 + option4 + option5 + option6 + option7;
+    option1 + option2 + option3 + option4 + option5 + option6;
   const calculateVotedPercentage = () =>
     Math.round((calculateVotedQuantity() * 100) / numberOfUsers);
 
@@ -287,7 +207,6 @@ export default function Poll({ session }) {
               option4={option4}
               option5={option5}
               option6={option6}
-              option7={option7}
               calculateVotedQuantity={calculateVotedQuantity}
             />
           ) : (
@@ -308,7 +227,6 @@ export default function Poll({ session }) {
               option4,
               option5,
               option6,
-              option7,
             })
           }
           disabled={loading}
