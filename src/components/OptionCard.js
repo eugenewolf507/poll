@@ -13,7 +13,7 @@ const OptionCard = ({
   const imgContext = require.context(
     '../../public/BGPhotos',
     true,
-    /\.(png|jpe?g|svg|PNG|JPE?G|SVG)$/
+    /\.(png|jpe?g|svg)$/
   );
   const imageFilenames = imgContext
     .keys()
