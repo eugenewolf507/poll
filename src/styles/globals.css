@@ -200,6 +200,10 @@ body {
   line-height: 20px;
 }
 
+.card__about > p {
+  padding-top: 10px;
+}
+
 .card > button {
   margin-left: calc(100% - 150px);
 }
