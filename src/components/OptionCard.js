@@ -72,7 +72,12 @@ const OptionCard = ({
           ))}
         </SimpleSlider>
         {/* </div> */}
-        <p className="card__about">{about}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: about }}
+          className="card__about"
+        >
+          {/* <span dangerouslySetInnerHTML={{ __html: about }}></span> */}
+        </div>
       </div>
       <button onClick={() => handleChooseOption(id)} className="btn">
         Віддати голос
