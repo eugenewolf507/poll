@@ -20,11 +20,6 @@ const OptionCard = ({
     .filter((x) => x.includes(`public/BGPhotos/${userPhoto}`));
   const images = imageFilenames.map(imgContext);
 
-  // console.log('userPhoto ', userPhoto);
-  // console.log('imgContext ', imgContext);
-  // console.log('imageFilenames ', imageFilenames);
-  // console.log('images ', images);
-
   return (
     <div className="card">
       <div className="card__header">
@@ -40,7 +35,6 @@ const OptionCard = ({
         </p>
       </div>
       <div className="card__main">
-        {/* <div className="video__wrapper"> */}
         <SimpleSlider>
           <div>
             <div className="slider__vertical-center">
@@ -71,7 +65,6 @@ const OptionCard = ({
             </div>
           ))}
         </SimpleSlider>
-        {/* </div> */}
         <div
           dangerouslySetInnerHTML={{ __html: about }}
           className="card__about"
