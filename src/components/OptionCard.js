@@ -68,9 +68,7 @@ const OptionCard = ({
         <div
           dangerouslySetInnerHTML={{ __html: about }}
           className="card__about"
-        >
-          {/* <span dangerouslySetInnerHTML={{ __html: about }}></span> */}
-        </div>
+        ></div>
       </div>
       <button onClick={() => handleChooseOption(id)} className="btn">
         Віддати голос
