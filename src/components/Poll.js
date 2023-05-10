@@ -188,7 +188,7 @@ export default function Poll({ session }) {
       <p className="sub-title">
         {doesUserVoted
           ? 'Дякуємо, Ви вже проголосували. Ось результати:'
-          : 'Проголосуйте, будь ласка!'}
+          : 'Обери, будь ласка,  проект, якому ти надаєш перевагу.'}
       </p>
       {loading ? (
         <div>Завантаження...</div>

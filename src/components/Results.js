@@ -33,7 +33,7 @@ const Results = ({
         totalVoted={calculateVotedQuantity()}
       />
       <ResultsOption
-        text="Аллан Фатулаєв / Юля Кирьянова для Служби військових капеланів"
+        text="Аллан Фатулаєв для Служби військових капеланів"
         value={option5}
         totalVoted={calculateVotedQuantity()}
       />
