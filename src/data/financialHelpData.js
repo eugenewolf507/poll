@@ -54,7 +54,7 @@ const financialHelpData = [
 
   {
     id: '5',
-    author: 'Аллан Фатулаєв / Юля Кирьянова',
+    author: 'Аллан Фатулаєв',
     userPhoto: 'AllanFatullaiev',
     youtubeID: 'O535SJ9bvzE',
     recipient: 'Служби військових капеланів',

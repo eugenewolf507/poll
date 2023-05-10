@@ -7,7 +7,7 @@ import Results from './Results';
 export default function Poll({ session }) {
   const supabase = useSupabaseClient();
   const user = useUser();
-  const numberOfUsers = 68;
+  const numberOfUsers = 67;
   const [loading, setLoading] = useState(true);
   const [doesUserVoted, setDoesUserVoted] = useState(false);
   const [option1, setOption1] = useState(0);
@@ -188,7 +188,7 @@ export default function Poll({ session }) {
       <p className="sub-title">
         {doesUserVoted
           ? 'Дякуємо, Ви вже проголосували. Ось результати:'
-          : 'Проголосуйте, будь ласка!'}
+          : 'Обери, будь ласка,  проект, якому ти надаєш перевагу.'}
       </p>
       {loading ? (
         <div>Завантаження...</div>
