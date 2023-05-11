@@ -3,7 +3,7 @@ const financialHelpData = [
     id: '1',
     author: 'Анастасія Матюшенко',
     userPhoto: 'AnastasiiaMatiushenko',
-    youtubeID: 'qtDt2kFyNcA',
+    youtubeID: ['qtDt2kFyNcA'],
     recipient: 'Кужель Олександра',
     about: `
     <p>Вітаю вас, друзі! Батько моєї найкращої подруги - військовослужбовець, який служить в аеророзвідці Збройних Сил України. </p>
@@ -15,7 +15,7 @@ const financialHelpData = [
     id: '2',
     author: 'Вікторія Соколова',
     userPhoto: 'ViktoriiaSokolova',
-    youtubeID: 'qQ46m3WZUKs',
+    youtubeID: ['qQ46m3WZUKs'],
     recipient:
       '73 Морського Центру Сил спеціальних операцій. Група водолазів розвідників.',
     about: `
@@ -28,7 +28,9 @@ const financialHelpData = [
     id: '3',
     author: 'Аліна Тустановська',
     userPhoto: 'AlinaTustanovska',
-    youtubeID: 'hqWkT1ViUms',
+
+    // youtubeID: ['_9L-hDt2diM'],
+    youtubeID: ['hqWkT1ViUms', '_9L-hDt2diM'],
     recipient:
       'Сергія Дороніна, старшого інструктора з вогневої та тактичної підготовки групи інструкторів ОЗСП ОМЕГА. ',
     about: `
@@ -42,7 +44,7 @@ const financialHelpData = [
     id: '4',
     author: 'Ігор Кішко',
     userPhoto: 'IhorKishko',
-    youtubeID: 'MjDjSfD7pfY',
+    youtubeID: ['MjDjSfD7pfY'],
     recipient: 'БФ «СОЛОМ’ЯНСЬКІ КОТИКИ»',
     about: `
       <p>Благодійний Фонд «Соломʼянські котики» започаткований з початку повномасштабної війни. Основним і найголовнішим напрямком роботи котиків є навчання військових тактичній медицині та спорядження їх якісними аптечками. </p>
@@ -56,7 +58,7 @@ const financialHelpData = [
     id: '5',
     author: 'Аллан Фатулаєв',
     userPhoto: 'AllanFatullaiev',
-    youtubeID: 'O535SJ9bvzE',
+    youtubeID: ['O535SJ9bvzE'],
     recipient: 'Служби військових капеланів',
     about: '<p>Збір на авто для виконання завдань військових капеланів.</p>',
   },
@@ -65,7 +67,7 @@ const financialHelpData = [
     id: '6',
     author: 'Юлія Стадник',
     userPhoto: 'YuliiaStadnyk',
-    youtubeID: 'Mu7MHjYdEwY',
+    youtubeID: ['Mu7MHjYdEwY'],
     recipient: 'Баланської Оксани',
     about:
       '<p>Забезпечення пально-мастильними матеріалами для автомобілів гуманітарного транзитного складу, засновником та очільником якого являється моя мама.</p>',
