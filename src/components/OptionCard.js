@@ -36,21 +36,23 @@ const OptionCard = ({
       </div>
       <div className="card__main">
         <SimpleSlider>
-          <div>
-            <div className="slider__vertical-center">
-              <div className="iframe__wrapper">
-                <iframe
-                  src={`https://www.youtube.com/embed/${youtubeID}`}
-                  allowfullscreen="allowfullscreen"
-                  mozallowfullscreen="mozallowfullscreen"
-                  msallowfullscreen="msallowfullscreen"
-                  oallowfullscreen="oallowfullscreen"
-                  webkitallowfullscreen="webkitallowfullscreen"
-                  className="iframe__responsive"
-                ></iframe>
+          {youtubeID.map((url) => (
+            <div key={url}>
+              <div className="slider__vertical-center">
+                <div className="iframe__wrapper">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${url}`}
+                    allowfullscreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen"
+                    msallowfullscreen="msallowfullscreen"
+                    oallowfullscreen="oallowfullscreen"
+                    webkitallowfullscreen="webkitallowfullscreen"
+                    className="iframe__responsive"
+                  ></iframe>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
           {images.map((image, index) => (
             <div key={index}>
               <div className="slider__vertical-center">
