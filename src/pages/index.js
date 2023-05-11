@@ -79,7 +79,7 @@ const Home = () => {
           </div>
           <div className="loginBtn-wrapper">
             <button onClick={signInWithGoogle} className="btn">
-              Залогінтесь через корпоративний INC4 (Google) аккаунт
+              Авторизуйся через корпоративний INC4 (Google) аккаунт
             </button>
             {notInc4Account && (
               <p>
