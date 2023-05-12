@@ -78,9 +78,13 @@ const Home = () => {
             />
           </div>
           <div className="loginBtn-wrapper">
-            <button onClick={signInWithGoogle} className="btn">
+            <p>
+              Колеги, у зв’язку з технічними проблемами, голосування
+              призупинено. Вибачаємося за незручності, апдейт буде трохи згодом.
+            </p>
+            {/* <button onClick={signInWithGoogle} className="btn">
               Авторизуйся через корпоративний INC4 (Google) аккаунт
-            </button>
+            </button> */}
             {notInc4Account && (
               <p>
                 Ви намагаєтесь залогінитись не через корпоративний INC4 аккаунт.
