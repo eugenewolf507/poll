@@ -58,6 +58,7 @@ const OptionCard = ({
               <div className="slider__vertical-center">
                 <Image
                   src={image}
+                  loading="eager" // {lazy} | {eager}
                   alt="Picture of the author"
                   className="slider__image"
                   // width={437}
