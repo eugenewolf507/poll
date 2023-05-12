@@ -50,6 +50,8 @@ const Home = () => {
   //   return session ? true : false;
   // };
 
+  // !TODO uncomment Poll and button after fix increment issue
+
   return (
     <div>
       {canUserSignIn() ? (
@@ -64,7 +66,8 @@ const Home = () => {
             />
             <SignOutButton supabase={supabase} />
           </div>
-          <Poll session={session} />
+          {/* !TODO uncomment */}
+          {/* <Poll session={session} /> */}
         </>
       ) : (
         <>
@@ -82,6 +85,7 @@ const Home = () => {
               Колеги, у зв’язку з технічними проблемами, голосування
               призупинено. Вибачаємося за незручності, апдейт буде трохи згодом.
             </p>
+            {/* TODO delete text, uncomment button */}
             {/* <button onClick={signInWithGoogle} className="btn">
               Авторизуйся через корпоративний INC4 (Google) аккаунт
             </button> */}
