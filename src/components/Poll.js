@@ -30,7 +30,7 @@ export default function Poll({ session }) {
       let { data, error, status } = await supabase
         .from('results')
         .select(`option1, option2, option3, option4, option5, option6`)
-        .eq('id', 'poll1')
+        .eq('id', '1')
         .single();
 
       if (error && status !== 406) {
@@ -91,18 +91,31 @@ export default function Poll({ session }) {
     try {
       setLoading(true);
 
-      const updates = {
-        id: 'poll1',
-        updated_at: new Date().toISOString(),
-        option1,
-        option2,
-        option3,
-        option4,
-        option5,
-        option6,
-      };
+      // const updates = {
+      //   id: '1',
+      //   updated_at: new Date().toISOString(),
+      //   option1,
+      //   option2,
+      //   option3,
+      //   option4,
+      //   option5,
+      //   option6,
+      // };
+      // let { error } = await supabase.from('results').upsert(updates);
 
-      let { error } = await supabase.from('results').upsert(updates);
+      // const { data, error } = await supabase.rpc('increment', {
+      //   x: 1,
+      //   row_id:1',
+      //   col_name: 'option1',
+      // });
+
+      const { data, error } = await supabase.rpc('incrementc', {
+        table_name: 'results',
+        row_id: '1',
+        x: 1,
+        field_name: 'option5',
+      });
+
       if (error) throw error;
     } catch (error) {
       alert('Error updating the data!');
