@@ -80,14 +80,7 @@ export default function Poll({ session }) {
     }
   }
 
-  async function updatePoll({
-    option1,
-    option2,
-    option3,
-    option4,
-    option5,
-    option6,
-  }) {
+  async function updatePoll(columnId) {
     try {
       setLoading(true);
 
@@ -113,7 +106,7 @@ export default function Poll({ session }) {
         table_name: 'results',
         row_id: '1',
         x: 1,
-        field_name: 'option5',
+        field_name: `option${columnId}`,
       });
 
       if (error) throw error;
@@ -177,14 +170,7 @@ export default function Poll({ session }) {
         setOption6(tempO6);
         break;
     }
-    updatePoll({
-      option1: tempO1,
-      option2: tempO2,
-      option3: tempO3,
-      option4: tempO4,
-      option5: tempO5,
-      option6: tempO6,
-    });
+    updatePoll(id);
     setDoesUserVoted(true);
     const email = session.user.email;
     updateProfile({ email });
