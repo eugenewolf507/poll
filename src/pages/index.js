@@ -66,7 +66,6 @@ const Home = () => {
             />
             <SignOutButton supabase={supabase} />
           </div>
-          {/* !TODO uncomment */}
           <Poll session={session} />
         </>
       ) : (
@@ -81,11 +80,6 @@ const Home = () => {
             />
           </div>
           <div className="loginBtn-wrapper">
-            <p>
-              Колеги, у зв’язку з технічними проблемами, голосування
-              призупинено. Вибачаємося за незручності, апдейт буде трохи згодом.
-            </p>
-            {/* TODO delete text, uncomment button */}
             <button onClick={signInWithGoogle} className="btn">
               Авторизуйся через корпоративний INC4 (Google) аккаунт
             </button>
