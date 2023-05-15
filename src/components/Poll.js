@@ -17,20 +17,19 @@ export default function Poll({ session }) {
   const [option5, setOption5] = useState(0);
   const [option6, setOption6] = useState(0);
 
-  // get data useEffect
   useEffect(() => {
     getProfile();
-    getPoll();
+    getVotedQuantityBeforeVoting();
   }, [session]);
 
-  async function getPoll() {
+  async function getVotedQuantityBeforeVoting() {
     try {
       setLoading(true);
 
       let { data, error, status } = await supabase
         .from('results')
         .select(`option1, option2, option3, option4, option5, option6`)
-        .eq('id', 'poll1')
+        .eq('id', '1')
         .single();
 
       if (error && status !== 406) {
@@ -80,33 +79,38 @@ export default function Poll({ session }) {
     }
   }
 
-  async function updatePoll({
-    option1,
-    option2,
-    option3,
-    option4,
-    option5,
-    option6,
-  }) {
+  async function updatePoll(columnId) {
     try {
       setLoading(true);
-
-      const updates = {
-        id: 'poll1',
-        updated_at: new Date().toISOString(),
-        option1,
-        option2,
-        option3,
-        option4,
-        option5,
-        option6,
-      };
-
-      let { error } = await supabase.from('results').upsert(updates);
-      if (error) throw error;
+      const { error } = await supabase.rpc('incrementc', {
+        table_name: 'results',
+        row_id: '1',
+        x: 1,
+        field_name: `option${columnId}`,
+      });
+      const { data, error: error2 } = await supabase
+        .from('results')
+        .select(`option1, option2, option3, option4, option5, option6`)
+        .eq('id', '1')
+        .single();
+      if (data) {
+        setOption1(data.option1);
+        setOption2(data.option2);
+        setOption3(data.option3);
+        setOption4(data.option4);
+        setOption5(data.option5);
+        setOption6(data.option6);
+      }
+      if (error) {
+        console.log('Error while writing vote ', error);
+        throw error;
+      }
+      if (error2) {
+        console.log('Error while reading results ', error2);
+        throw error2;
+      }
     } catch (error) {
       alert('Error updating the data!');
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -131,47 +135,7 @@ export default function Poll({ session }) {
   }
 
   const handleChooseOption = (id) => {
-    console.log(`handleChooseOption clicked id - ${id}`);
-    let tempO1 = option1,
-      tempO2 = option2,
-      tempO3 = option3,
-      tempO4 = option4,
-      tempO5 = option5,
-      tempO6 = option6;
-    switch (id) {
-      case '1':
-        tempO1++;
-        setOption1(tempO1);
-        break;
-      case '2':
-        tempO2++;
-        setOption2(tempO2);
-        break;
-      case '3':
-        tempO3++;
-        setOption3(tempO3);
-        break;
-      case '4':
-        tempO4++;
-        setOption4(tempO4);
-        break;
-      case '5':
-        tempO5++;
-        setOption5(tempO5);
-        break;
-      case '6':
-        tempO6++;
-        setOption6(tempO6);
-        break;
-    }
-    updatePoll({
-      option1: tempO1,
-      option2: tempO2,
-      option3: tempO3,
-      option4: tempO4,
-      option5: tempO5,
-      option6: tempO6,
-    });
+    updatePoll(id);
     setDoesUserVoted(true);
     const email = session.user.email;
     updateProfile({ email });

@@ -67,7 +67,7 @@ const Home = () => {
             <SignOutButton supabase={supabase} />
           </div>
           {/* !TODO uncomment */}
-          {/* <Poll session={session} /> */}
+          <Poll session={session} />
         </>
       ) : (
         <>
@@ -86,9 +86,9 @@ const Home = () => {
               призупинено. Вибачаємося за незручності, апдейт буде трохи згодом.
             </p>
             {/* TODO delete text, uncomment button */}
-            {/* <button onClick={signInWithGoogle} className="btn">
+            <button onClick={signInWithGoogle} className="btn">
               Авторизуйся через корпоративний INC4 (Google) аккаунт
-            </button> */}
+            </button>
             {notInc4Account && (
               <p>
                 Ви намагаєтесь залогінитись не через корпоративний INC4 аккаунт.
