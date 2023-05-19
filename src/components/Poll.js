@@ -150,9 +150,10 @@ export default function Poll({ session }) {
   return (
     <div className="poll-wrapper">
       <p className="sub-title">
-        {doesUserVoted
+        Дякуємо всім, хто проголосував!
+        {/* {doesUserVoted
           ? 'Дякуємо за твій голос. Нижче наведено поточний розподіл голосів. Остаточні результати буде оголошено пізніше.'
-          : 'Обери, будь ласка,  проект, якому ти надаєш перевагу.'}
+          : 'Обери, будь ласка,  проект, якому ти надаєш перевагу.'} */}
       </p>
       {loading ? (
         <div>Завантаження...</div>
@@ -163,7 +164,16 @@ export default function Poll({ session }) {
             calculateVotedQuantity={calculateVotedQuantity}
             calculateVotedPercentage={calculateVotedPercentage}
           />
-          {doesUserVoted ? (
+          <Results
+            option1={option1}
+            option2={option2}
+            option3={option3}
+            option4={option4}
+            option5={option5}
+            option6={option6}
+            calculateVotedQuantity={calculateVotedQuantity}
+          />
+          {/* {doesUserVoted ? (
             <Results
               option1={option1}
               option2={option2}
@@ -175,7 +185,7 @@ export default function Poll({ session }) {
             />
           ) : (
             <PollOptions handleChooseOption={handleChooseOption} />
-          )}
+          )} */}
         </>
       )}
 
